@@ -1,0 +1,3256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Wheated Brooklyn - Premium Neapolitan Pizza, Craft Cocktails & Rare Whiskeys. Fine dining experience in Brooklyn's heart."
+    />
+    <meta
+      name="keywords"
+      content="restaurant, pizzeria, neapolitan pizza, craft cocktails, whiskey bar, Brooklyn, fine dining, reservation"
+    />
+    <meta name="author" content="Wheated Brooklyn" />
+    <meta
+      property="og:title"
+      content="Wheated Brooklyn - Premium Pizza & Craft Spirits"
+    />
+    <meta
+      property="og:description"
+      content="Neapolitan pizza, artisan cocktails, and rare whiskeys in an upscale setting"
+    />
+    <meta name="theme-color" content="#1a1a1a" />
+    <title>Wheated - Premium Pizza, Cocktails & Whiskeys</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- AOS Animation Library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+
+    <style>
+      /* ==================== CSS VARIABLES & THEMING ==================== */
+      :root {
+        --primary-color: #1a1a1a;
+        --secondary-color: #d4664d;
+        --accent-color: #e8b4a4;
+        --light-bg: #f5f1ed;
+        --white: #ffffff;
+        --text-dark: #1a1a1a;
+        --text-light: #666666;
+        --border-color: #e5e0d8;
+        --success-color: #27ae60;
+        --error-color: #e74c3c;
+        --warning-color: #f39c12;
+
+        --font-primary: "Poppins", sans-serif;
+        --font-display: "Playfair Display", serif;
+
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+
+        --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body.dark-mode {
+        --light-bg: #1a1a1a;
+        --white: #2a2a2a;
+        --text-dark: #f9f7f4;
+        --text-light: #cccccc;
+        --border-color: #404040;
+      }
+
+      /* ==================== GLOBAL STYLES ==================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-primary);
+        color: var(--text-dark);
+        background-color: var(--light-bg);
+        line-height: 1.6;
+        transition: background-color var(--transition-normal),
+          color var(--transition-normal);
+      }
+
+      /* ==================== PAGE MANAGEMENT ==================== */
+      .page {
+        display: none;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* ==================== TYPOGRAPHY ==================== */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+      }
+      h2 {
+        font-size: clamp(1.75rem, 4vw, 3rem);
+      }
+      h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+      }
+      h4 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+      }
+
+      a:hover {
+        color: var(--accent-color);
+      }
+
+      /* ==================== BUTTONS ==================== */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.75rem;
+        border: 2px solid transparent;
+        border-radius: 50px;
+        font-family: var(--font-primary);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        text-decoration: none;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transition: left var(--transition-fast);
+        z-index: 0;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--secondary-color), #e8c547);
+        color: var(--primary-color);
+        border-color: var(--secondary-color);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn-secondary {
+        background: var(--primary-color);
+        color: var(--white);
+        border-color: var(--primary-color);
+      }
+
+      .btn-secondary:hover {
+        background: var(--accent-color);
+        border-color: var(--accent-color);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--secondary-color);
+        border-color: var(--secondary-color);
+      }
+
+      .btn-outline:hover {
+        background: var(--secondary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-sm {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.85rem;
+      }
+
+      .btn-lg {
+        padding: 1rem 2.25rem;
+        font-size: 1.05rem;
+      }
+
+      /* ==================== PRELOADER ==================== */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        animation: fadeOut 0.8s ease-out 1.5s forwards;
+      }
+
+      .preloader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid var(--border-color);
+        border-top-color: var(--secondary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      /* ==================== HEADER & NAVIGATION ==================== */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 1000;
+        transition: all var(--transition-normal);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      body.dark-mode header {
+        background: rgba(42, 42, 42, 0.95);
+      }
+
+      header.scrolled {
+        padding: 0.5rem 0;
+        box-shadow: var(--shadow-md);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-family: var(--font-display);
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+        letter-spacing: -0.5px;
+        cursor: pointer;
+      }
+
+      body.dark-mode .logo {
+        color: var(--secondary-color);
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text-dark);
+        position: relative;
+        padding-bottom: 0.25rem;
+        cursor: pointer;
+      }
+
+      body.dark-mode .nav-menu a {
+        color: var(--text-dark);
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--secondary-color);
+        transition: width var(--transition-fast);
+      }
+
+      .nav-menu a:hover::after,
+      .nav-menu a.active::after {
+        width: 100%;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: var(--text-dark);
+        transition: transform var(--transition-fast);
+      }
+
+      .theme-toggle:hover {
+        transform: rotate(20deg);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 0.4rem;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--text-dark);
+        border-radius: 2px;
+        transition: all var(--transition-fast);
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+
+      /* ==================== MAIN CONTENT ==================== */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      section {
+        padding: 5rem 2rem;
+      }
+
+      /* ==================== HERO SECTION ==================== */
+      .hero {
+        margin-top: 70px;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #3a3a3a 100%
+        );
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="1200" height="600" fill="%232C2C2C"/><rect width="1200" height="600" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 800px;
+        padding: 2rem;
+        animation: slideUp 1s ease-out;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        animation: fadeIn 1s ease-out 0.2s backwards;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        animation: fadeIn 1s ease-out 0.4s backwards;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 2.5rem;
+        animation: fadeIn 1s ease-out 0.6s backwards;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        animation: fadeIn 1s ease-out 0.8s backwards;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5rem;
+        color: var(--secondary-color);
+        animation: bounce 2s infinite;
+        z-index: 2;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(10px);
+        }
+      }
+
+      /* ==================== FEATURED DISHES ==================== */
+      .featured-section {
+        background: var(--light-bg);
+        padding: 5rem 2rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-header h2 {
+        margin-bottom: 1rem;
+      }
+
+      .section-header p {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.05rem;
+      }
+
+      .featured-grid,
+      .menu-grid,
+      .testimonials-wrapper,
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .dish-card,
+      .menu-item,
+      .testimonial-card,
+      .gallery-item {
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-normal);
+        border: 1px solid var(--border-color);
+      }
+
+      .dish-card:hover,
+      .menu-item:hover,
+      .testimonial-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .dish-image {
+        width: 100%;
+        height: 240px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-color),
+          var(--secondary-color)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 3rem;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .dish-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--transition-normal);
+      }
+
+      .dish-card:hover .dish-image img {
+        transform: scale(1.1);
+      }
+
+      .dish-info {
+        padding: 1.5rem;
+      }
+
+      .dish-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+      }
+
+      .dish-description {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        margin-bottom: 1rem;
+      }
+
+      .dish-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .dish-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+      }
+
+      .dish-btn {
+        background: var(--primary-color);
+        color: var(--white);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .dish-btn:hover {
+        background: var(--secondary-color);
+        color: var(--primary-color);
+      }
+
+      /* ==================== MENU PAGE ==================== */
+      .menu-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .filter-btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--secondary-color);
+        background: transparent;
+        color: var(--secondary-color);
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all var(--transition-fast);
+      }
+
+      .filter-btn.active {
+        background: var(--secondary-color);
+        color: var(--primary-color);
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .menu-item {
+        padding: 1.5rem;
+        border-left: 4px solid var(--secondary-color);
+      }
+
+      .menu-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 0.5rem;
+      }
+
+      .menu-item-name {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .menu-item-price {
+        font-size: 1.1rem;
+        color: var(--secondary-color);
+        font-weight: 700;
+      }
+
+      .menu-item-description {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        margin-bottom: 0.5rem;
+      }
+
+      .menu-item-tag {
+        display: inline-block;
+        background: rgba(212, 175, 55, 0.1);
+        color: var(--secondary-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+      }
+
+      /* ==================== GALLERY ==================== */
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        height: 300px;
+        cursor: pointer;
+        background: linear-gradient(
+          135deg,
+          var(--accent-color),
+          var(--secondary-color)
+        );
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--transition-normal);
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      /* ==================== TESTIMONIALS ==================== */
+      .testimonial-card {
+        padding: 2.5rem;
+        text-align: center;
+        background: var(--light-bg);
+      }
+
+      .stars {
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+      }
+
+      .testimonial-author {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.25rem;
+      }
+
+      .testimonial-role {
+        font-size: 0.85rem;
+        color: var(--secondary-color);
+      }
+
+      /* ==================== FORMS ==================== */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.875rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: var(--white);
+        color: var(--text-dark);
+        font-family: var(--font-primary);
+        font-size: 0.95rem;
+        transition: all var(--transition-fast);
+      }
+
+      .form-group input::placeholder {
+        color: var(--text-light);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-submit {
+        width: 100%;
+        padding: 1rem;
+        background: var(--secondary-color);
+        color: var(--primary-color);
+        border: none;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        margin-top: 1rem;
+      }
+
+      .form-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* ==================== CART & ORDER ==================== */
+      .cart-container {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .cart-summary {
+        background: var(--light-bg);
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: right;
+      }
+
+      .cart-total {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 1.5rem;
+      }
+
+      /* ==================== FLOATING BUTTONS ==================== */
+      .floating-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--secondary-color), #e8c547);
+        color: var(--primary-color);
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-lg);
+        transition: all var(--transition-fast);
+        z-index: 100;
+      }
+
+      .floating-btn:hover {
+        transform: scale(1.1) rotate(10deg);
+      }
+
+      .whatsapp-btn {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: #25d366;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-lg);
+        transition: all var(--transition-fast);
+        z-index: 100;
+        text-decoration: none;
+      }
+
+      .whatsapp-btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* ==================== FOOTER ==================== */
+      footer {
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 4rem 2rem 2rem;
+        margin-top: 5rem;
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-section h4 {
+        color: var(--secondary-color);
+        margin-bottom: 1.25rem;
+        font-size: 1.1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.7);
+        transition: color var(--transition-fast);
+      }
+
+      .footer-section a:hover {
+        color: var(--secondary-color);
+      }
+
+      .footer-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .footer-info i {
+        color: var(--secondary-color);
+        width: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 50%;
+        color: var(--secondary-color);
+        transition: all var(--transition-fast);
+      }
+
+      .social-links a:hover {
+        background: var(--secondary-color);
+        color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-divider {
+        width: 100%;
+        height: 1px;
+        background: rgba(212, 175, 55, 0.2);
+        margin: 2rem 0;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+      }
+
+      /* ==================== MODAL ==================== */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 90%;
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+        animation: slideUp var(--transition-normal);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-dark);
+      }
+
+      /* ==================== RESPONSIVE DESIGN ==================== */
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: var(--white);
+          gap: 0;
+          padding: 1rem;
+          animation: slideDown 0.3s ease-out;
+        }
+
+        body.dark-mode .nav-menu {
+          background: var(--white);
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .nav-menu li {
+          padding: 0.75rem 0;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .hero {
+          margin-top: 60px;
+          height: 80vh;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+        }
+
+        .hero-buttons .btn {
+          width: 100%;
+        }
+
+        section {
+          padding: 3rem 1.5rem;
+        }
+
+        .featured-grid,
+        .menu-grid,
+        .testimonials-wrapper,
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .floating-btn {
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
+        }
+
+        .whatsapp-btn {
+          bottom: 80px;
+          right: 20px;
+          width: 50px;
+          height: 50px;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 425px) {
+        nav {
+          padding: 0.75rem 1rem;
+        }
+
+        .logo {
+          font-size: 1.25rem;
+        }
+
+        .hero {
+          margin-top: 50px;
+          height: 100vh;
+        }
+
+        .hero-content {
+          padding: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 0.95rem;
+        }
+
+        h2 {
+          font-size: 1.75rem;
+        }
+
+        section {
+          padding: 2rem 1rem;
+        }
+
+        .container {
+          padding: 0 1rem;
+        }
+
+        .featured-grid,
+        .menu-grid,
+        .testimonials-wrapper,
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .form-submit {
+          padding: 0.875rem;
+        }
+
+        .floating-btn,
+        .whatsapp-btn {
+          width: 45px;
+          height: 45px;
+          font-size: 1.25rem;
+        }
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==================== UTILITIES ==================== */
+      .hidden {
+        display: none;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--secondary-color);
+        outline-offset: 2px;
+      }
+
+      /* --- FIX: Ensure hero title stays white in dark mode --- */
+      body.dark-mode .hero-title {
+        color: #ffffff !important;
+      }
+
+      /* --- FIX: Ensure hero subtitle also stays readable --- */
+      body.dark-mode .hero-subtitle {
+        color: #e0e0e0 !important;
+      }
+
+      /* --- FIX: Keep "Order Online" button visible in dark mode --- */
+      body.dark-mode .btn-secondary {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #ffffff !important;
+      }
+
+      /* Optional: Keep "Reserve Table" button readable in dark mode */
+      body.dark-mode .btn-primary {
+        color: #ffffff !important;
+      }
+      /* FIX hero heading turning black in dark mode */
+      body.dark-mode section.hero h1 {
+        color: #ffffff !important;
+      }
+
+      /* Fix hero subtitle & paragraphs inside hero */
+      body.dark-mode section.hero p {
+        color: #e0e0e0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+      <nav>
+        <a class="logo" onclick="navigateTo('home')">Wheated</a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a class="nav-link" onclick="navigateTo('home')">Home</a></li>
+          <li><a class="nav-link" onclick="navigateTo('menu')">Menu</a></li>
+          <li><a class="nav-link" onclick="navigateTo('about')">About</a></li>
+          <li>
+            <a class="nav-link" onclick="navigateTo('gallery')">Gallery</a>
+          </li>
+          <li>
+            <a class="nav-link" onclick="navigateTo('reviews')">Reviews</a>
+          </li>
+          <li>
+            <a class="nav-link" onclick="navigateTo('reservation')">Reserve</a>
+          </li>
+          <li><a class="nav-link" onclick="navigateTo('order')">Order</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Toggle navigation menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ==================== HOME PAGE ==================== -->
+    <div id="home" class="page active">
+      <!-- Hero Section -->
+      <section class="hero" id="homeHero">
+        <div class="hero-content">
+          <p class="hero-subtitle">Welcome to Wheated</p>
+          <h1>Neapolitan Pizza & Craft Spirits</h1>
+          <p>
+            Experience authentic wood-fired pizzas, exceptional craft cocktails,
+            and a curated selection of rare whiskeys
+          </p>
+          <div class="hero-buttons">
+            <a onclick="navigateTo('reservation')" class="btn btn-primary">
+              <i class="fas fa-calendar"></i> Reserve Table
+            </a>
+            <a onclick="navigateTo('order')" class="btn btn-secondary">
+              <i class="fas fa-shopping-cart"></i> Order Online
+            </a>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </section>
+
+      <!-- Featured Dishes -->
+      <section class="featured-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Featured Specialties</h2>
+            <p>
+              Discover our most beloved dishes, crafted with premium ingredients
+              and expertise
+            </p>
+          </div>
+
+          <div class="featured-grid">
+            <div class="dish-card" data-aos="fade-up">
+              <div class="dish-image"><i class="fas fa-pizza-slice"></i></div>
+              <div class="dish-info">
+                <h3 class="dish-name">Margherita Classica</h3>
+                <p class="dish-description">
+                  San Marzano tomato, fresh mozzarella, basil, extra virgin
+                  olive oil
+                </p>
+                <div class="dish-footer">
+                  <span class="dish-price">$18.00</span>
+                  <button
+                    class="dish-btn add-to-cart"
+                    data-name="Margherita Classica"
+                    data-price="18.00"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="dish-image"><i class="fas fa-cocktail"></i></div>
+              <div class="dish-info">
+                <h3 class="dish-name">Old Fashioned</h3>
+                <p class="dish-description">
+                  Premium whiskey, bitters, sugar, orange peel
+                </p>
+                <div class="dish-footer">
+                  <span class="dish-price">$14.00</span>
+                  <button
+                    class="dish-btn add-to-cart"
+                    data-name="Old Fashioned"
+                    data-price="14.00"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dish-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="dish-image"><i class="fas fa-glass-whiskey"></i></div>
+              <div class="dish-info">
+                <h3 class="dish-name">Macallan 18 Year</h3>
+                <p class="dish-description">
+                  Scottish single malt, 43% ABV, sherry oak aged
+                </p>
+                <div class="dish-footer">
+                  <span class="dish-price">$22.00</span>
+                  <button
+                    class="dish-btn add-to-cart"
+                    data-name="Macallan 18 Year"
+                    data-price="22.00"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 2rem">
+            <a onclick="navigateTo('menu')" class="btn btn-primary"
+              >View Full Menu</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials">
+        <div class="container">
+          <div class="section-header">
+            <h2>What Our Guests Say</h2>
+            <p>Join thousands of satisfied customers who love our café</p>
+          </div>
+
+          <div class="testimonials-wrapper">
+            <div class="testimonial-card" data-aos="fade-up">
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Best pizzas in Brooklyn! The ambiance is perfect for work or
+                meeting friends. Highly recommend!"
+              </p>
+              <p class="testimonial-author">Sarah Johnson</p>
+              <p class="testimonial-role">Regular Customer</p>
+            </div>
+
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "The pizzas are absolutely delicious and the staff is
+                incredibly friendly. Worth every penny!"
+              </p>
+              <p class="testimonial-author">Michael Chen</p>
+              <p class="testimonial-role">Food Blogger</p>
+            </div>
+
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Great spot for hangouts! The menu has something for everyone, and
+                the service is impeccable."
+              </p>
+              <p class="testimonial-author">Emma Wilson</p>
+              <p class="testimonial-role">New York Times Critic</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section
+        style="
+          background: linear-gradient(135deg, var(--primary-color), #3a3a3a);
+          color: var(--white);
+          padding: 4rem 2rem;
+          text-align: center;
+        "
+      >
+        <div class="container">
+          <h2 style="color: var(--white); margin-bottom: 1.5rem">
+            Experience Fine Dining Excellence
+          </h2>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.8);
+              font-size: 1.1rem;
+              margin-bottom: 2rem;
+              max-width: 600px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            Discover authentic Neapolitan pizzas, expertly crafted cocktails,
+            and rare whiskeys in an elegant atmosphere. Reserve your table or
+            order online today.
+          </p>
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1rem;
+              justify-content: center;
+            "
+          >
+            <a onclick="navigateTo('reservation')" class="btn btn-primary"
+              >Make a Reservation</a
+            >
+            <a
+              onclick="navigateTo('contact')"
+              class="btn btn-outline"
+              style="
+                border-color: var(--secondary-color);
+                color: var(--secondary-color);
+              "
+              >Get in Touch</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section style="background: var(--light-bg); padding: 4rem 2rem">
+        <div class="container" style="max-width: 600px">
+          <div style="text-align: center">
+            <h3 style="margin-bottom: 0.5rem">
+              Join Our Wine & Spirits Circle
+            </h3>
+            <p style="margin-bottom: 2rem">
+              Receive exclusive tastings, new whiskey arrivals, and VIP dining
+              experiences
+            </p>
+          </div>
+
+          <form id="newsletterForm" style="display: flex; gap: 0.5rem">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              style="
+                flex: 1;
+                padding: 0.875rem;
+                border: 1px solid var(--border-color);
+                border-radius: 6px;
+                font-family: var(--font-primary);
+              "
+            />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== MENU PAGE ==================== -->
+    <div id="menu" class="page">
+      <section style="margin-top: 70px; padding-top: 3rem">
+        <div class="container">
+          <div class="section-header">
+            <h2>Our Menu</h2>
+            <p>Signature pizzas, craft cocktails, and premium spirits</p>
+          </div>
+
+          <div class="menu-filters">
+            <button class="filter-btn active" onclick="filterMenu('all')">
+              All Items
+            </button>
+            <button class="filter-btn" onclick="filterMenu('pizzas')">
+              Pizzas
+            </button>
+            <button class="filter-btn" onclick="filterMenu('cocktails')">
+              Cocktails
+            </button>
+            <button class="filter-btn" onclick="filterMenu('whiskeys')">
+              Whiskeys
+            </button>
+            <button class="filter-btn" onclick="filterMenu('appetizers')">
+              Appetizers
+            </button>
+          </div>
+
+          <div class="menu-grid" id="menuGrid">
+            <!-- Menu items populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== ABOUT PAGE ==================== -->
+    <div id="about" class="page">
+      <section style="margin-top: 70px">
+        <div class="container">
+          <div class="section-header">
+            <h2>About Wheated</h2>
+            <p>Fine Dining Heritage</p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 3rem;
+              align-items: center;
+              margin-bottom: 4rem;
+            "
+            data-aos="fade-up"
+          >
+            <div>
+              <h3 style="color: var(--secondary-color); margin-bottom: 1rem">
+                Our Vision
+              </h3>
+              <p>
+                Wheated brings authentic Neapolitan tradition to
+                Brooklyn with a modern twist. Founded in 2018, we're dedicated
+                to crafting exceptional wood-fired pizzas using imported Italian
+                ingredients, creating innovative craft cocktails, and curating a
+                world-class whiskey collection.
+              </p>
+              <p>
+                Every pizza is made with San Marzano tomatoes and aged
+                mozzarella di bufala. Our mixologists craft each cocktail with
+                precision, and our whiskey sommelier personally selects rare
+                bottles from distilleries worldwide. We believe exceptional
+                dining is about quality, tradition, and experience.
+              </p>
+            </div>
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--accent-color),
+                  var(--secondary-color)
+                );
+                height: 400px;
+                border-radius: 12px;
+              "
+            ></div>
+          </div>
+
+          <div
+            style="
+              background: var(--light-bg);
+              padding: 3rem;
+              border-radius: 12px;
+              margin-bottom: 4rem;
+            "
+            data-aos="fade-up"
+          >
+            <h3 style="text-align: center; margin-bottom: 2rem">Our Values</h3>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+              "
+            >
+              <div style="text-align: center">
+                <i
+                  style="
+                    font-size: 2.5rem;
+                    color: var(--secondary-color);
+                    margin-bottom: 1rem;
+                  "
+                  class="fas fa-pizza-slice"
+                ></i>
+                <h4>Authentic Tradition</h4>
+                <p style="font-size: 0.9rem">
+                  Genuine Neapolitan recipes and wood-fired techniques
+                </p>
+              </div>
+              <div style="text-align: center">
+                <i
+                  style="
+                    font-size: 2.5rem;
+                    color: var(--secondary-color);
+                    margin-bottom: 1rem;
+                  "
+                  class="fas fa-glass-whiskey"
+                ></i>
+                <h4>Premium Spirits</h4>
+                <p style="font-size: 0.9rem">
+                  Curated rare whiskeys and craft cocktails
+                </p>
+              </div>
+              <div style="text-align: center">
+                <i
+                  style="
+                    font-size: 2.5rem;
+                    color: var(--secondary-color);
+                    margin-bottom: 1rem;
+                  "
+                  class="fas fa-cocktail"
+                ></i>
+                <h4>Master Craftsmanship</h4>
+                <p style="font-size: 0.9rem">
+                  Expert mixologists and Italian trained chefs
+                </p>
+              </div>
+              <div style="text-align: center">
+                <i
+                  style="
+                    font-size: 2.5rem;
+                    color: var(--secondary-color);
+                    margin-bottom: 1rem;
+                  "
+                  class="fas fa-crown"
+                ></i>
+                <h4>Excellence</h4>
+                <p style="font-size: 0.9rem">
+                  5-star service and unforgettable experiences
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div data-aos="fade-up">
+            <h3 style="text-align: center; margin-bottom: 2rem">
+              Meet Our Team
+            </h3>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+              "
+            >
+              <div
+                style="
+                  background: var(--white);
+                  padding: 2rem;
+                  border-radius: 12px;
+                  text-align: center;
+                  border: 1px solid var(--border-color);
+                "
+              >
+                <div
+                  style="
+                    width: 120px;
+                    height: 120px;
+                    background: linear-gradient(
+                      135deg,
+                      var(--secondary-color),
+                      var(--accent-color)
+                    );
+                    border-radius: 50%;
+                    margin: 0 auto 1rem;
+                  "
+                ></div>
+                <h4>Marco Rossini</h4>
+                <p
+                  style="
+                    color: var(--secondary-color);
+                    font-size: 0.9rem;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  Executive Chef & Founder
+                </p>
+                <p style="font-size: 0.85rem">
+                  3 Michelin stars in Naples, 25+ years of Italian culinary
+                  mastery
+                </p>
+              </div>
+
+              <div
+                style="
+                  background: var(--white);
+                  padding: 2rem;
+                  border-radius: 12px;
+                  text-align: center;
+                  border: 1px solid var(--border-color);
+                "
+              >
+                <div
+                  style="
+                    width: 120px;
+                    height: 120px;
+                    background: linear-gradient(
+                      135deg,
+                      var(--accent-color),
+                      var(--secondary-color)
+                    );
+                    border-radius: 50%;
+                    margin: 0 auto 1rem;
+                  "
+                ></div>
+                <h4>Sofia DiMarco</h4>
+                <p
+                  style="
+                    color: var(--secondary-color);
+                    font-size: 0.9rem;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  Master Mixologist
+                </p>
+                <p style="font-size: 0.85rem">
+                  Award-winning bartender specializing in craft cocktails
+                </p>
+              </div>
+
+              <div
+                style="
+                  background: var(--white);
+                  padding: 2rem;
+                  border-radius: 12px;
+                  text-align: center;
+                  border: 1px solid var(--border-color);
+                "
+              >
+                <div
+                  style="
+                    width: 120px;
+                    height: 120px;
+                    background: linear-gradient(
+                      135deg,
+                      var(--secondary-color),
+                      var(--accent-color)
+                    );
+                    border-radius: 50%;
+                    margin: 0 auto 1rem;
+                  "
+                ></div>
+                <h4>Thomas MacLeod</h4>
+                <p
+                  style="
+                    color: var(--secondary-color);
+                    font-size: 0.9rem;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  Whiskey Sommelier
+                </p>
+                <p style="font-size: 0.85rem">
+                  Certified whiskey expert with access to rare global
+                  distilleries
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== GALLERY PAGE ==================== -->
+    <div id="gallery" class="page">
+      <section style="margin-top: 70px">
+        <div class="container">
+          <div class="section-header">
+            <h2>Gallery</h2>
+            <p>Visual Journey Through Wheated Brooklyn</p>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-item" data-aos="fade-up">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(135deg, #b45d3d, #d4664d);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-size: 2rem;
+                "
+              >
+                <i class="fas fa-pizza-slice"></i>
+              </div>
+              <div class="gallery-overlay"><i class="fas fa-search"></i></div>
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="50">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(135deg, #d4664d, #e8b4a4);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-size: 2rem;
+                "
+              >
+                <i class="fas fa-cocktail"></i>
+              </div>
+              <div class="gallery-overlay"><i class="fas fa-search"></i></div>
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(135deg, #e8b4a4, #8b4513);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-size: 2rem;
+                "
+              >
+                <i class="fas fa-glass-whiskey"></i>
+              </div>
+              <div class="gallery-overlay"><i class="fas fa-search"></i></div>
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(135deg, #1a1a1a, #d4664d);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-size: 2rem;
+                "
+              >
+                <i class="fas fa-fire"></i>
+              </div>
+              <div class="gallery-overlay"><i class="fas fa-search"></i></div>
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(135deg, #d4664d, #8b4513);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-size: 2rem;
+                "
+              >
+                <i class="fas fa-leaf"></i>
+              </div>
+              <div class="gallery-overlay"><i class="fas fa-search"></i></div>
+            </div>
+
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(135deg, #e8b4a4, #d4664d);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-size: 2rem;
+                "
+              >
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="gallery-overlay"><i class="fas fa-search"></i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== REVIEWS PAGE ==================== -->
+    <div id="reviews" class="page">
+      <section style="margin-top: 70px">
+        <div class="container">
+          <div class="section-header">
+            <h2>Guest Reviews</h2>
+            <p>Stories from our distinguished patrons</p>
+          </div>
+
+          <div class="testimonials-wrapper">
+            <div class="testimonial-card" data-aos="fade-up">
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Best pizzas in Brooklyn! The ambiance is perfect for work or
+                meeting friends. Highly recommend!"
+              </p>
+              <p class="testimonial-author">Sarah Johnson</p>
+              <p class="testimonial-role">Regular Customer</p>
+            </div>
+
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "The food is absolutely delicious and the staff is
+                incredibly friendly. Worth every penny!"
+              </p>
+              <p class="testimonial-author">Michael Chen</p>
+              <p class="testimonial-role">Food Blogger</p>
+            </div>
+
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Great spot for hangouts! The menu has something for everyone, and
+                the service is impeccable."
+              </p>
+              <p class="testimonial-author">Emma Wilson</p>
+              <p class="testimonial-role">New York Times Critic</p>
+            </div>
+
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Wheated Brooklyn is my go-to place! The quality of their whiskey
+                is unmatched, and the owners are wonderful."
+              </p>
+              <p class="testimonial-author">Jessica Martinez</p>
+              <p class="testimonial-role">Freelancer</p>
+            </div>
+
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Exceptional experience from start to finish. The seasonal menu
+                items are always creative and delicious."
+              </p>
+              <p class="testimonial-author">Robert Thompson</p>
+              <p class="testimonial-role">Business Executive</p>
+            </div>
+
+            <div
+              class="testimonial-card"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">
+                "Best decision to visit Wheated! The ambiance, food, and service
+                are all world-class. Will definitely come back!"
+              </p>
+              <p class="testimonial-author">Lisa Anderson</p>
+              <p class="testimonial-role">Tourist</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== RESERVATION PAGE ==================== -->
+    <div id="reservation" class="page">
+      <section
+        style="
+          margin-top: 70px;
+          background: linear-gradient(135deg, var(--primary-color), #3a3a3a);
+          color: var(--white);
+        "
+      >
+        <div class="container" style="max-width: 600px">
+          <div class="section-header" style="color: var(--white)">
+            <h2 style="color: var(--white)">Reserve Your Experience</h2>
+            <p style="color: rgba(255, 255, 255, 0.8)">
+              Book your table at Wheated
+            </p>
+          </div>
+
+          <form id="reservationForm">
+            <div class="form-group">
+              <label for="resName" style="color: var(--white)">Full Name</label>
+              <input
+                type="text"
+                id="resName"
+                placeholder="John Doe"
+                required
+                style="
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.2);
+                  color: var(--white);
+                "
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resEmail" style="color: var(--white)">Email</label>
+                <input
+                  type="email"
+                  id="resEmail"
+                  placeholder="john@example.com"
+                  required
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: var(--white);
+                  "
+                />
+              </div>
+              <div class="form-group">
+                <label for="resPhone" style="color: var(--white)">Phone</label>
+                <input
+                  type="tel"
+                  id="resPhone"
+                  placeholder="(310) 555-1234"
+                  required
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: var(--white);
+                  "
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resDate" style="color: var(--white)">Date</label>
+                <input
+                  type="date"
+                  id="resDate"
+                  required
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: var(--white);
+                  "
+                />
+              </div>
+              <div class="form-group">
+                <label for="resTime" style="color: var(--white)">Time</label>
+                <input
+                  type="time"
+                  id="resTime"
+                  required
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: var(--white);
+                  "
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resGuests" style="color: var(--white)"
+                  >Number of Guests</label
+                >
+                <input
+                  type="number"
+                  id="resGuests"
+                  min="1"
+                  max="20"
+                  value="2"
+                  required
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: var(--white);
+                  "
+                />
+              </div>
+              <div class="form-group">
+                <label for="resOccasion" style="color: var(--white)"
+                  >Occasion</label
+                >
+                <select
+                  id="resOccasion"
+                  style="
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: var(--white);
+                  "
+                >
+                  <option value="dining">Regular Dining</option>
+                  <option value="birthday">Birthday</option>
+                  <option value="anniversary">Anniversary</option>
+                  <option value="business">Business Meeting</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="resNotes" style="color: var(--white)"
+                >Special Requests</label
+              >
+              <textarea
+                id="resNotes"
+                placeholder="Any special dietary requirements or requests?"
+                style="
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.2);
+                  color: var(--white);
+                  min-height: 100px;
+                "
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="form-submit"
+              style="
+                background: var(--secondary-color);
+                color: var(--primary-color);
+              "
+            >
+              Confirm Reservation
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== CONTACT PAGE ==================== -->
+    <div id="contact" class="page">
+      <section style="margin-top: 70px">
+        <div class="container">
+          <div class="section-header">
+            <h2>Get in Touch</h2>
+            <p>Questions about our menu, events, or private dining</p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 3rem;
+              margin-bottom: 4rem;
+            "
+            data-aos="fade-up"
+          >
+            <div>
+              <h3 style="color: var(--secondary-color); margin-bottom: 2rem">
+                Get in Touch
+              </h3>
+
+              <form id="contactForm">
+                <div class="form-group">
+                  <label for="contactName">Full Name</label>
+                  <input
+                    type="text"
+                    id="contactName"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="contactEmail">Email</label>
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="contactSubject">Subject</label>
+                  <input
+                    type="text"
+                    id="contactSubject"
+                    placeholder="How can we help?"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="contactMessage">Message</label>
+                  <textarea
+                    id="contactMessage"
+                    placeholder="Your message..."
+                    required
+                    style="min-height: 150px"
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Message</button>
+              </form>
+            </div>
+
+            <div>
+              <h3 style="color: var(--secondary-color); margin-bottom: 2rem">
+                Contact Information
+              </h3>
+
+              <div
+                class="footer-info"
+                style="color: var(--text-dark); margin-bottom: 2rem"
+              >
+                <i
+                  class="fas fa-map-marker-alt"
+                  style="color: var(--secondary-color)"
+                ></i>
+                <div>
+                  <p style="font-weight: 600; margin-bottom: 0.25rem">
+                    Address
+                  </p>
+                  <p style="color: var(--text-light); margin: 0">
+                    905 Church Avenue<br />Brooklyn, NY 11218
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="footer-info"
+                style="color: var(--text-dark); margin-bottom: 2rem"
+              >
+                <i
+                  class="fas fa-phone"
+                  style="color: var(--secondary-color)"
+                ></i>
+                <div>
+                  <p style="font-weight: 600; margin-bottom: 0.25rem">Phone</p>
+                  <p style="color: var(--text-light); margin: 0">
+                    <a href="tel:+13105551234">(310) 555-1234</a>
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="footer-info"
+                style="color: var(--text-dark); margin-bottom: 2rem"
+              >
+                <i
+                  class="fas fa-envelope"
+                  style="color: var(--secondary-color)"
+                ></i>
+                <div>
+                  <p style="font-weight: 600; margin-bottom: 0.25rem">Email</p>
+                  <p style="color: var(--text-light); margin: 0">
+                    <a href="mailto:info@wheatedbrooklyn.com"
+                      >info@wheatedbrooklyn.com</a
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div style="margin-top: 3rem">
+                <h4 style="color: var(--secondary-color); margin-bottom: 1rem">
+                  Hours
+                </h4>
+                <p><strong>Monday - Friday:</strong> 7:00 AM - 10:00 PM</p>
+                <p><strong>Saturday - Sunday:</strong> 8:00 AM - 11:00 PM</p>
+              </div>
+
+              <div style="margin-top: 2rem">
+                <h4 style="color: var(--secondary-color); margin-bottom: 1rem">
+                  Follow Us
+                </h4>
+                <div class="social-links" style="filter: invert(0)">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                  >
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Twitter"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a
+                    href="https://youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube"
+                  >
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== ORDER ONLINE PAGE ==================== -->
+    <div id="order" class="page">
+      <section style="margin-top: 70px">
+        <div class="container">
+          <div class="section-header">
+            <h2>Order Online</h2>
+            <p>Delivery available for pizzas and cocktail kits</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem">
+            <div>
+              <div class="menu-filters">
+                <button
+                  class="filter-btn active"
+                  onclick="filterOrderMenu('all')"
+                >
+                  All
+                </button>
+                <button class="filter-btn" onclick="filterOrderMenu('pizzas')">
+                  Pizzas
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterOrderMenu('cocktails')"
+                >
+                  Cocktails
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterOrderMenu('whiskeys')"
+                >
+                  Whiskeys
+                </button>
+              </div>
+
+              <div class="menu-grid" id="orderMenuGrid">
+                <!-- Order menu items populated by JavaScript -->
+              </div>
+            </div>
+
+            <!-- Shopping Cart -->
+            <div>
+              <div
+                style="
+                  background: var(--white);
+                  padding: 2rem;
+                  border-radius: 12px;
+                  border: 1px solid var(--border-color);
+                  position: sticky;
+                  top: 100px;
+                "
+              >
+                <h3
+                  style="margin-bottom: 1.5rem; color: var(--secondary-color)"
+                >
+                  Your Order
+                </h3>
+
+                <div
+                  id="cartItems"
+                  style="
+                    max-height: 400px;
+                    overflow-y: auto;
+                    margin-bottom: 1.5rem;
+                  "
+                >
+                  <p style="color: var(--text-light); text-align: center">
+                    Your cart is empty
+                  </p>
+                </div>
+
+                <div
+                  style="
+                    border-top: 1px solid var(--border-color);
+                    padding-top: 1rem;
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      margin-bottom: 1rem;
+                    "
+                  >
+                    <span>Tax (8%):</span>
+                    <span id="tax">$0.00</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 1.25rem;
+                      font-weight: 700;
+                      margin-bottom: 1.5rem;
+                    "
+                  >
+                    <span>Total:</span>
+                    <span id="total" style="color: var(--secondary-color)"
+                      >$0.00</span
+                    >
+                  </div>
+
+                  <button
+                    onclick="proceedToCheckout()"
+                    class="btn btn-primary"
+                    style="width: 100%; margin-bottom: 0.5rem"
+                  >
+                    Checkout
+                  </button>
+                  <button
+                    onclick="clearCart()"
+                    class="btn btn-outline"
+                    style="
+                      width: 100%;
+                      border-color: var(--secondary-color);
+                      color: var(--secondary-color);
+                    "
+                  >
+                    Clear Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Wheated</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem">
+            Authentic Neapolitan pizzeria and craft spirits lounge in Brooklyn,
+            dedicated to culinary excellence and unforgettable experiences.
+          </p>
+          <div class="social-links">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a onclick="navigateTo('home')">Home</a></li>
+            <li><a onclick="navigateTo('menu')">Menu</a></li>
+            <li><a onclick="navigateTo('about')">About Us</a></li>
+            <li><a onclick="navigateTo('gallery')">Gallery</a></li>
+            <li><a onclick="navigateTo('reviews')">Reviews</a></li>
+            <li><a onclick="navigateTo('reservation')">Reservations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Hours</h4>
+          <div class="footer-info">
+            <i class="fas fa-clock"></i>
+            <div>
+              <p style="margin: 0">Monday - Friday</p>
+              <p style="margin: 0; color: var(--secondary-color)">
+                7:00 AM - 10:00 PM
+              </p>
+            </div>
+          </div>
+          <div class="footer-info">
+            <i class="fas fa-clock"></i>
+            <div>
+              <p style="margin: 0">Saturday - Sunday</p>
+              <p style="margin: 0; color: var(--secondary-color)">
+                8:00 AM - 11:00 PM
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <div class="footer-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>905 Church Avenue, Brooklyn, NY 11218</span>
+          </div>
+          <div class="footer-info">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+13105551234">(310) 555-1234</a>
+          </div>
+          <div class="footer-info">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@wheatedbrooklyn.com"
+              >info@wheatedbrooklyn.com</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2025 Wheated. All rights reserved. |
+          <a href="#" style="color: rgba(255, 255, 255, 0.6)">Privacy Policy</a>
+          |
+          <a href="#" style="color: rgba(255, 255, 255, 0.6)"
+            >Terms of Service</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <a
+      href="https://wa.me/13105551234?text=Hi%20Wheated%20Brooklyn!%20I%20would%20like%20to%20place%20an%20order%20or%20make%20a%20reservation"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-btn"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button
+      class="floating-btn"
+      id="floatingBtn"
+      onclick="navigateTo('order')"
+      aria-label="Order now"
+    >
+      <i class="fas fa-shopping-bag"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+      // ==================== MENU DATA ====================
+      const menuData = {
+        pizzas: [
+          {
+            name: "Margherita Classica",
+            price: 18.0,
+            description:
+              "San Marzano tomato, fresh mozzarella, basil, extra virgin olive oil",
+            category: "pizzas",
+          },
+          {
+            name: "Diavola",
+            price: 20.0,
+            description: "Tomato, mozzarella, spicy salami, fresh chili",
+            category: "pizzas",
+          },
+          {
+            name: "Quattro Formaggi",
+            price: 22.0,
+            description: "Mozzarella, gorgonzola, parmesan, fresh ricotta",
+            category: "pizzas",
+          },
+          {
+            name: "Prosciutto & Burrata",
+            price: 24.0,
+            description:
+              "San Marzano tomato, prosciutto di Parma, burrata, rocket",
+            category: "pizzas",
+          },
+          {
+            name: "Truffle & Egg",
+            price: 26.0,
+            description:
+              "Mozzarella, black truffle, quail egg, parmesan shavings",
+            category: "pizzas",
+          },
+          {
+            name: "Vegetariana",
+            price: 19.0,
+            description: "Tomato, mozzarella, roasted vegetables, pesto",
+            category: "pizzas",
+          },
+        ],
+        cocktails: [
+          {
+            name: "Old Fashioned",
+            price: 14.0,
+            description: "Premium whiskey, bitters, sugar, orange peel",
+            category: "cocktails",
+          },
+          {
+            name: "Negroni",
+            price: 13.0,
+            description: "Gin, Campari, sweet vermouth, orange twist",
+            category: "cocktails",
+          },
+          {
+            name: "Manhattan",
+            price: 13.5,
+            description: "Rye whiskey, sweet vermouth, bitters, cherry",
+            category: "cocktails",
+          },
+          {
+            name: "Aperol Spritz",
+            price: 12.0,
+            description: "Aperol, prosecco, soda, orange slice",
+            category: "cocktails",
+          },
+          {
+            name: "Sidecar",
+            price: 14.0,
+            description: "Cognac, triple sec, fresh lemon juice",
+            category: "cocktails",
+          },
+          {
+            name: "Espresso Martini",
+            price: 13.0,
+            description: "Vodka, Kahlúa, fresh espresso, coffee beans",
+            category: "cocktails",
+          },
+        ],
+        whiskeys: [
+          {
+            name: "Macallan 18 Year",
+            price: 22.0,
+            description: "Scottish single malt, 43% ABV, sherry oak aged",
+            category: "whiskeys",
+          },
+          {
+            name: "Yamazaki 12 Year",
+            price: 20.0,
+            description: "Japanese single malt, 43% ABV, harmonious flavor",
+            category: "whiskeys",
+          },
+          {
+            name: "Buffalo Trace",
+            price: 15.0,
+            description: "Kentucky bourbon, 45% ABV, complex and smooth",
+            category: "whiskeys",
+          },
+          {
+            name: "Talisker 10 Year",
+            price: 17.0,
+            description: "Islay single malt, 45.8% ABV, smoky and spicy",
+            category: "whiskeys",
+          },
+          {
+            name: "Hibiki Harmony",
+            price: 19.0,
+            description: "Japanese blended, 43% ABV, floral and fruity",
+            category: "whiskeys",
+          },
+          {
+            name: "Lagavulin 16 Year",
+            price: 24.0,
+            description: "Islay single malt, 43% ABV, rich peat smoke",
+            category: "whiskeys",
+          },
+        ],
+        appetizers: [
+          {
+            name: "Calamari Fritti",
+            price: 13.0,
+            description: "Crispy fried squid, marinara sauce, lemon",
+            category: "appetizers",
+          },
+          {
+            name: "Bruschetta al Pomodoro",
+            price: 10.0,
+            description: "Toasted bread, fresh tomato, garlic, basil oil",
+            category: "appetizers",
+          },
+          {
+            name: "Burrata & Prosciutto",
+            price: 14.0,
+            description: "Creamy burrata, aged prosciutto, balsamico glaze",
+            category: "appetizers",
+          },
+          {
+            name: "Arancini",
+            price: 11.0,
+            description: "Sicilian risotto balls, ragù, mozzarella (3pcs)",
+            category: "appetizers",
+          },
+          {
+            name: "Mozzarella Sticks",
+            price: 9.0,
+            description: "Fried mozzarella di bufala, marinara dipping sauce",
+            category: "appetizers",
+          },
+          {
+            name: "Olives & Nuts Mix",
+            price: 8.0,
+            description: "Mixed olives, almonds, rosemary, sea salt",
+            category: "appetizers",
+          },
+        ],
+      };
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let currentPage = "home";
+
+      // ==================== INITIALIZATION ====================
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+
+        setTimeout(() => {
+          document.querySelector(".preloader").style.display = "none";
+        }, 1500);
+
+        initThemeToggle();
+        initNavigation();
+        initForms();
+        populateMenus();
+        updateCart();
+      });
+
+      // ==================== PAGE NAVIGATION ====================
+      function navigateTo(pageName) {
+        document
+          .querySelectorAll(".page")
+          .forEach((page) => page.classList.remove("active"));
+        document.getElementById(pageName).classList.add("active");
+        currentPage = pageName;
+        window.scrollTo(0, 0);
+
+        document
+          .querySelectorAll(".nav-link")
+          .forEach((link) => link.classList.remove("active"));
+        event?.target?.classList.add("active");
+
+        if (pageName === "menu") populateMenus();
+        if (pageName === "order") populateOrderMenu();
+      }
+
+      // ==================== THEME TOGGLE ====================
+      function initThemeToggle() {
+        const themeToggle = document.getElementById("themeToggle");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const savedTheme = localStorage.getItem("theme");
+
+        const isDark = savedTheme === "dark" || (prefersDark && !savedTheme);
+        if (isDark) {
+          document.body.classList.add("dark-mode");
+          updateThemeIcon();
+        }
+
+        themeToggle.addEventListener("click", () => {
+          document.body.classList.toggle("dark-mode");
+          localStorage.setItem(
+            "theme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+          );
+          updateThemeIcon();
+        });
+      }
+
+      function updateThemeIcon() {
+        const themeToggle = document.getElementById("themeToggle");
+        const isDark = document.body.classList.contains("dark-mode");
+        themeToggle.innerHTML = isDark
+          ? '<i class="fas fa-sun"></i>'
+          : '<i class="fas fa-moon"></i>';
+      }
+
+      // ==================== NAVIGATION ====================
+      function initNavigation() {
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+
+        hamburger.addEventListener("click", () => {
+          hamburger.classList.toggle("active");
+          navMenu.classList.toggle("active");
+        });
+
+        navMenu.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        });
+
+        // Header scroll effect
+        window.addEventListener("scroll", () => {
+          const header = document.getElementById("header");
+          if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+      }
+
+      // ==================== MENU FUNCTIONS ====================
+      function populateMenus() {
+        const menuGrid = document.getElementById("menuGrid");
+        menuGrid.innerHTML = "";
+
+        Object.values(menuData)
+          .flat()
+          .forEach((item) => {
+            const menuItemEl = document.createElement("div");
+            menuItemEl.className = "menu-item";
+            menuItemEl.innerHTML = `
+                    <div class="menu-item-header">
+                        <h4 class="menu-item-name">${item.name}</h4>
+                        <span class="menu-item-price">$${item.price.toFixed(
+                          2
+                        )}</span>
+                    </div>
+                    <p class="menu-item-description">${item.description}</p>
+                    <span class="menu-item-tag">${
+                      item.category.charAt(0).toUpperCase() +
+                      item.category.slice(1)
+                    }</span>
+                `;
+            menuGrid.appendChild(menuItemEl);
+          });
+      }
+
+      function filterMenu(category) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        event.target.classList.add("active");
+
+        const menuGrid = document.getElementById("menuGrid");
+        menuGrid.innerHTML = "";
+
+        const items =
+          category === "all"
+            ? Object.values(menuData).flat()
+            : menuData[category] || [];
+        if (items.length === 0) return;
+        items.forEach((item) => {
+          const menuItemEl = document.createElement("div");
+          menuItemEl.className = "menu-item";
+          menuItemEl.innerHTML = `
+                    <div class="menu-item-header">
+                        <h4 class="menu-item-name">${item.name}</h4>
+                        <span class="menu-item-price">$${item.price.toFixed(
+                          2
+                        )}</span>
+                    </div>
+                    <p class="menu-item-description">${item.description}</p>
+                    <span class="menu-item-tag">${item.category}</span>
+                `;
+          menuGrid.appendChild(menuItemEl);
+        });
+      }
+
+      function populateOrderMenu() {
+        const orderMenuGrid = document.getElementById("orderMenuGrid");
+        orderMenuGrid.innerHTML = "";
+
+        Object.values(menuData)
+          .flat()
+          .forEach((item) => {
+            const menuItemEl = document.createElement("div");
+            menuItemEl.className = "menu-item";
+            menuItemEl.innerHTML = `
+                    <div class="menu-item-header">
+                        <h4 class="menu-item-name">${item.name}</h4>
+                        <span class="menu-item-price">$${item.price.toFixed(
+                          2
+                        )}</span>
+                    </div>
+                    <p class="menu-item-description">${item.description}</p>
+                    <button class="dish-btn add-to-cart" onclick="addToCart('${
+                      item.name
+                    }', ${item.price})">Add to Cart</button>
+                `;
+            orderMenuGrid.appendChild(menuItemEl);
+          });
+      }
+
+      function filterOrderMenu(category) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        event.target.classList.add("active");
+
+        const orderMenuGrid = document.getElementById("orderMenuGrid");
+        orderMenuGrid.innerHTML = "";
+
+        const items =
+          category === "all"
+            ? Object.values(menuData).flat()
+            : menuData[category] || [];
+        if (items.length === 0) return;
+        items.forEach((item) => {
+          const menuItemEl = document.createElement("div");
+          menuItemEl.className = "menu-item";
+          menuItemEl.innerHTML = `
+                    <div class="menu-item-header">
+                        <h4 class="menu-item-name">${item.name}</h4>
+                        <span class="menu-item-price">$${item.price.toFixed(
+                          2
+                        )}</span>
+                    </div>
+                    <p class="menu-item-description">${item.description}</p>
+                    <button class="dish-btn add-to-cart" onclick="addToCart('${
+                      item.name
+                    }', ${item.price})">Add to Cart</button>
+                `;
+          orderMenuGrid.appendChild(menuItemEl);
+        });
+      }
+
+      // ==================== CART FUNCTIONS ====================
+      function addToCart(name, price) {
+        cart.push({ name, price, id: Date.now() });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
+        showNotification(`${name} added to cart!`, "success");
+      }
+
+      function updateCart() {
+        const cartItems = document.getElementById("cartItems");
+        const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+        const tax = subtotal * 0.08;
+        const total = subtotal + tax;
+
+        if (cart.length === 0) {
+          cartItems.innerHTML =
+            '<p style="color: var(--text-light); text-align: center;">Your cart is empty</p>';
+          document.getElementById("subtotal").textContent = "$0.00";
+          document.getElementById("tax").textContent = "$0.00";
+          document.getElementById("total").textContent = "$0.00";
+          return;
+        }
+
+        cartItems.innerHTML = cart
+          .map(
+            (item, index) => `
+                <div style="display: flex; justify-content: space-between; padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                    <div style="flex: 1;">
+                        <p style="font-weight: 600; margin: 0;">${item.name}</p>
+                        <p style="color: var(--text-light); font-size: 0.85rem; margin: 0;">$${item.price.toFixed(
+                          2
+                        )}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background: none; border: none; color: var(--error-color); cursor: pointer; font-size: 1.25rem;">×</button>
+                </div>
+            `
+          )
+          .join("");
+
+        document.getElementById("subtotal").textContent = `$${subtotal.toFixed(
+          2
+        )}`;
+        document.getElementById("tax").textContent = `$${tax.toFixed(2)}`;
+        document.getElementById("total").textContent = `$${total.toFixed(2)}`;
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
+      }
+
+      function clearCart() {
+        cart = [];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
+        showNotification("Cart cleared", "success");
+      }
+
+      function proceedToCheckout() {
+        if (cart.length === 0) {
+          showNotification("Your cart is empty", "warning");
+          return;
+        }
+        showNotification(
+          "Order placed successfully! Thank you for your order.",
+          "success"
+        );
+        setTimeout(() => {
+          clearCart();
+          navigateTo("home");
+        }, 2000);
+      }
+
+      // ==================== FORMS ====================
+      function initForms() {
+        // Newsletter form
+        const newsletterForm = document.getElementById("newsletterForm");
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            showNotification(
+              "Thanks for subscribing! Check your email for confirmation.",
+              "success"
+            );
+            newsletterForm.reset();
+          });
+        }
+
+        // Reservation form
+        const reservationForm = document.getElementById("reservationForm");
+        if (reservationForm) {
+          reservationForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            showNotification(
+              "Reservation confirmed! We look forward to seeing you.",
+              "success"
+            );
+            reservationForm.reset();
+          });
+        }
+
+        // Contact form
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            showNotification(
+              "Message sent! We'll get back to you soon.",
+              "success"
+            );
+            contactForm.reset();
+          });
+        }
+
+        // Add to cart buttons
+        document.addEventListener("click", (e) => {
+          if (e.target.classList.contains("add-to-cart")) {
+            const name = e.target.dataset.name;
+            const price = parseFloat(e.target.dataset.price);
+            if (name && price) {
+              addToCart(name, price);
+            }
+          }
+        });
+      }
+
+      // ==================== NOTIFICATIONS ====================
+      function showNotification(message, type = "info") {
+        const notification = document.createElement("div");
+        notification.textContent = message;
+        notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: ${
+                  type === "success"
+                    ? "#27AE60"
+                    : type === "error"
+                    ? "#E74C3C"
+                    : type === "warning"
+                    ? "#F39C12"
+                    : "#3498DB"
+                };
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                animation: slideDown 0.3s ease-out;
+                z-index: 5000;
+                font-weight: 600;
+                max-width: 300px;
+            `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.animation = "slideUp 0.3s ease-out forwards";
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+
+      // Keyboard accessibility
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          // Close any modals if added
+        }
+      });
+    </script>
+  </body>
+</html>
